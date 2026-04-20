@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>chris</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* CONTENITORI VIDEO */
+        .video-box {
+            position: fixed;
+            width: 240px;
+            height: 520px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 14px;
+            border: 10px solid;
+            border-image-slice: 1;
+            border-image-source: linear-gradient(to bottom right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8f00ff);
+            overflow: hidden;
+            z-index: 9999;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .video-left { left: 10px; }
+        .video-right { right: 10px; }
+
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .video-text {
+            position: absolute;
+            bottom: 12px;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            text-shadow: 0 0 8px #fff;
+            pointer-events: none;
+            animation: wave 3s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-4px) rotate(-1deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(4px) rotate(1deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="video-box video-left">
+    <video id="player-left" autoplay loop muted playsinline>
+        <source id="source-left" src="" type="video/mp4">
+    </video>
+    <div id="text-left" class="video-text"></div>
+</div>
+
+<div class="video-box video-right">
+    <video id="player-right" autoplay loop muted playsinline>
+        <source id="source-right" src="" type="video/mp4">
+    </video>
+    <div id="text-right" class="video-text"></div>
+</div>
+
+<script>
+    // --- PLAYLIST CONFIGURATA ---
+    const playlist = [
+        { url: "https://i.imgur.com/0kcI3mo.mp4", label: "❤️ℛ𝓪𝓭𝓲𝓸 𝓢𝓶𝓲𝓵𝒆❤️" },
+        { url: "https://i.imgur.com/XmE6fSk.mp4", label: "❤️ℛ𝓪𝓭𝓲𝓸 𝓢𝓶𝓲𝓵𝒆❤️" },
+        { url: "https://i.imgur.com/AvaMqkZ.mp4", label: "❤️ℛ𝓪𝓭𝓲𝓸 𝓢𝓶𝓲𝓵𝒆❤️" },
+        { url: "https://i.imgur.com/fPcoc86.mp4", label: "❤️ℛ𝓪𝓭𝓲𝓸 𝓢𝓶𝓲𝓵𝒆❤️" }
+    ];
+
+    function updateVideos() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+
+        // Calcola lo slot di 10 minuti (esempio: dalle 14:00 alle 14:29 è uno slot)
+        const currentSlot = (hours * 2) + (minutes >= 10 ? 1 : 0);
+        
+        // Seleziona i video basandosi sullo slot temporale
+        // Sinistra: video corrente della lista
+        // Destra: video successivo della lista
+        const leftIndex = currentSlot % playlist.length;
+        const rightIndex = (currentSlot + 1) % playlist.length;
+
+        const leftVideo = playlist[leftIndex];
+        const rightVideo = playlist[rightIndex];
+
+        // Aggiorna Sinistra se il link è cambiato
+        const vLeft = document.getElementById('player-left');
+        const sLeft = document.getElementById('source-left');
+        if (sLeft.src !== leftVideo.url) {
+            sLeft.src = leftVideo.url;
+            document.getElementById('text-left').innerText = leftVideo.label;
+            vLeft.load();
+            vLeft.play();
+        }
+
+        // Aggiorna Destra se il link è cambiato
+        const vRight = document.getElementById('player-right');
+        const sRight = document.getElementById('source-right');
+        if (sRight.src !== rightVideo.url) {
+            sRight.src = rightVideo.url;
+            document.getElementById('text-right').innerText = rightVideo.label;
+            vRight.load();
+            vRight.play();
+        }
+    }
+
+    // Controlla ogni 30 secondi se è scattata la mezz'ora
+    setInterval(updateVideos, 30000);
+    
+    // Avvia subito
+    updateVideos();
+</script>
+
+</body>
+</html>
+
+</body></html>
+
+
+<script>
+
+
+		var message="no copy christina!";
+
+		function clickIE4(){
+		if (event.button==2){
+		alert(message);
+		return false;
+		}
+		}
+
+		function clickNS4(e){
+		if (document.layers||document.getElementById&&!document.all){
+		if (e.which==2||e.which==3){
+		alert(message);
+		return false;
+		}
+		}
+		}
+
+		if (document.layers){
+		document.captureEvents(Event.MOUSEDOWN);
+		document.onmousedown=clickNS4;
+		}
+		else if (document.all&&!document.getElementById){
+		document.onmousedown=clickIE4;
+		}
+
+		document.oncontextmenu=new Function("alert(message);return false")
+</script>	
+
+
+
+
+
+<script>
+
+
+		function disableselect(e){
+		return false
+		}
+		function reEnable(){
+		return true
+		}
+		document.onselectstart=new Function ("return false")
+		if (window.sidebar){
+		document.onmousedown=disableselect
+		document.onclick=reEnable
+		}
+</script>  
+
+</body></html>
+
